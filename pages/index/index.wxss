@@ -1,0 +1,59 @@
+/* 高级深咖背景 */
+.container {
+  height: 100vh;
+  background-color: #718184; /* 深咖色、高级感 */
+  padding: 80rpx 40rpx;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* 当前天气 */
+.current-box {
+  text-align: center;
+  margin-top: 40rpx;
+  margin-bottom: 120rpx;
+}
+
+.city {
+  font-size: 44rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.temp {
+  font-size: 140rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.weather {
+  font-size: 36rpx;
+  opacity: 0.9;
+}
+
+/* 未来天气 */
+.future-box {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.future-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.future-date {
+  font-size: 32rpx;
+}
+
+.future-weather {
+  font-size: 32rpx;
+  opacity: 0.85;
+}
+
+.future-temp {
+  font-size: 32rpx;
+  font-weight: 500;
+}
