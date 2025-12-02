@@ -7,6 +7,7 @@ Page({
     futureList: [],
     icon:"",
     description:"",
+    locationFailed: false
   },
 
   onLoad() {
@@ -22,15 +23,22 @@ Page({
         console.log("======latitude="+latitude+",longitude="+longitude);
         //this.getCity(latitude, longitude)
         this.getCity(30.488966, 114.479)
+
+        this.setData({ locationFailed: false })
       },
       fail: () => {
-        // wx.showToast({
-        //   title: "请授权定位",
-        //   icon: "none"
-        // })
-        this.getCity(30.488966, 114.479)
+        wx.showToast({
+          title: "请授权定位",
+          icon: "none"
+        })
+        //this.getCity(30.488966, 114.479)
+        this.setData({ locationFailed: true })
       }
     })
+  },
+
+  retryLocation() {
+    this.getLocation()
   },
 
   /** 经纬度 -> 城市 */

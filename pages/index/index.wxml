@@ -11,6 +11,11 @@
     </view>
   </view>
 
+  <view wx:if="{{locationFailed}}" class="location-fail">
+    <text>定位失败，请点击重新获取</text>
+    <button bindtap="retryLocation">重新获取定位</button>
+  </view>
+
   <!-- 未来天气 -->
   <view class="future-box">
     <block wx:for="{{futureList}}" wx:key="index">

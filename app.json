@@ -7,6 +7,9 @@
       "desc": "用于获取当前位置的天气信息"
     }
   },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "",
