@@ -4,8 +4,10 @@
   <view wx:if="{{loaded}}">
     <view class="current-box">
       <view class="city">{{city}}</view>
-      <view class="temp">{{temperature}}°</view>
-      <view class="weather">{{weather}}</view>
+      <!-- <view class="temp">{{temperature}}°</view> -->
+      <!-- <view class="weather">{{weather}}</view> -->
+      <image class="weather-icon" src="{{icon}}" mode="aspectFit"></image>
+      <view class="weather-desc">{{description}}</view>
     </view>
   </view>
 
@@ -13,7 +15,7 @@
   <view class="future-box">
     <block wx:for="{{futureList}}" wx:key="index">
       <view class="future-item">
-        <text class="future-date">{{item.date}}</text>
+        <text class="future-date">{{item.date}} {{item.week}}</text>
         <text class="future-weather">{{item.weather}}</text>
         <text class="future-temp">{{item.temp}}</text>
       </view>

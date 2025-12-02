@@ -2,7 +2,7 @@
 .container {
   height: 100vh;
   background-color: #718184; /* 深咖色、高级感 */
-  padding: 80rpx 40rpx;
+  padding: 100rpx 40rpx;
   color: #ffffff;
   box-sizing: border-box;
 }
@@ -10,7 +10,7 @@
 /* 当前天气 */
 .current-box {
   text-align: center;
-  margin-top: 40rpx;
+  margin-top: 150rpx;
   margin-bottom: 120rpx;
 }
 
@@ -29,6 +29,18 @@
 .weather {
   font-size: 36rpx;
   opacity: 0.9;
+}
+
+
+.weather-icon {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 auto 20rpx auto;
+}
+
+.weather-desc {
+  font-size: 32rpx;
+  opacity: 0.85;
 }
 
 /* 未来天气 */

@@ -4,7 +4,9 @@ Page({
     city: "",
     weather: "",
     temperature: "",
-    futureList: []
+    futureList: [],
+    icon:"",
+    description:"",
   },
 
   onLoad() {
@@ -17,13 +19,16 @@ Page({
       type: "wgs84",
       success: (res) => {
         const { latitude, longitude } = res
-        this.getCity(latitude, longitude)
+        console.log("======latitude="+latitude+",longitude="+longitude);
+        //this.getCity(latitude, longitude)
+        this.getCity(30.488966, 114.479)
       },
       fail: () => {
-        wx.showToast({
-          title: "请授权定位",
-          icon: "none"
-        })
+        // wx.showToast({
+        //   title: "请授权定位",
+        //   icon: "none"
+        // })
+        this.getCity(30.488966, 114.479)
       }
     })
   },
@@ -39,9 +44,8 @@ Page({
         location: `${lon},${lat}`
       },
       success: (res) => {
-        const city =
-          res.data.regeocode.addressComponent.city ||
-          res.data.regeocode.addressComponent.province
+        const addrComp = res.data.regeocode.addressComponent
+        const city = addrComp.district || addrComp.city || addrComp.province
 
         this.setData({ city })
 
@@ -65,10 +69,23 @@ Page({
       success: (res) => {
         const live = res.data.lives[0]
 
+        const iconMap = {
+          "晴": "sunny",
+          "多云": "cloudy",
+          "阴": "overcast",
+          "小雨": "rain",
+          "中雨": "rain",
+          "大雨": "rain",
+          "雷阵雨": "thunder"
+        }
+        const icon = iconMap[live.weather] || "sunny"
+
         this.setData({
           loaded: true,
           weather: live.weather,
-          temperature: live.temperature
+          temperature: live.temperature,
+          icon: `/images/weather/${icon}.png`,
+          description: `气温：${live.temperature}° / 湿度：${live.humidity}% / ${live.weather}`
         })
       }
     })
@@ -88,11 +105,17 @@ Page({
       success: (res) => {
         const forecasts = res.data.forecasts[0].casts
 
-        const list = forecasts.slice(1, 5).map(item => ({
-          date: item.date.slice(5), // 只留 月-日
-          weather: item.dayweather,
-          temp: `${item.nighttemp}° ~ ${item.daytemp}°`
-        }))
+        const weekMap = ["周日","周一","周二","周三","周四","周五","周六"]
+
+        const list = forecasts.slice(0, 4).map((item, idx) => {
+          let weekLabel = idx === 0 ? "今天" : weekMap[item.week - 0]
+          return {
+            date: item.date.slice(5),   // MM-DD
+            week: weekLabel,
+            weather: item.dayweather,
+            temp: `${item.nighttemp}° ~ ${item.daytemp}°`
+          }
+        })
 
         this.setData({
           futureList: list
