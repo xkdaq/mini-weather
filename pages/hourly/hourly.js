@@ -29,13 +29,11 @@ Page({
     const key = getApp().globalData.qweatherKey;
     
     wx.request({
-      url: `https://devapi.qweather.com/v7/weather/24h?location=${lon},${lat}&key=${key}`,
+      url: `https://p56aprjgdy.re.qweatherapi.com/v7/weather/24h?location=${lon},${lat}&key=${key}`,
       success: (res) => {
         const hours = res.data.hourly; // 24 小时数组
         const iconMap = {
-          "100":"sunny","101":"cloudy","102":"cloudy","103":"cloudy","104":"overcast",
-          "150":"sunny",      
-          "151":"cloudy",  
+          "100":"sunny","101":"cloudy","102":"cloudy","103":"cloudy","104":"overcast","150":"sunny","151":"cloudy",
           "300":"rain_light","301":"rain","302":"rain_heavy","303":"rain_storm","304":"rain_bigstorm",
           "305":"rain_superstorm","306":"rain","307":"rain_heavy","308":"thunder","309":"thunder",
           "310":"thunder_hail","311":"snow_light","312":"snow","313":"snow_heavy","314":"snow_storm",

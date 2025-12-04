@@ -57,7 +57,7 @@
 .time {
   width: 120rpx;
   text-align: left;
-  font-size: 32rpx;
+  font-size: 31rpx;
 }
 
 .weather-box {
