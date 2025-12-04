@@ -1,0 +1,88 @@
+/* 整页背景颜色 */
+.container {
+  padding: 40rpx;
+  background-color: #718184;
+  height: 100vh;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* header 区域 */
+.header {
+  margin-top: 100rpx;
+  /* 顶部高度 */
+  margin-bottom: 30rpx;
+  position: relative;
+  /* 给返回按钮绝对定位做参考 */
+}
+
+/* 返回按钮固定在左上角 */
+.back-btn {
+  position: absolute;
+  left: 40rpx;
+  margin-top: 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* 标题单独一行居中 */
+.title {
+  font-size: 36rpx;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 180rpx;
+}
+
+/* 滑动区域 */
+.hourly-scroll {
+  height: calc(100vh - 120rpx);
+  /* 留出标题和上下 padding */
+  overflow-y: scroll;
+  margin-top: 50rpx;
+}
+
+/* 每一条小时天气 */
+.hour-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.time {
+  width: 120rpx;
+  text-align: left;
+  font-size: 32rpx;
+}
+
+.weather-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hour-icon {
+  width: 60rpx;
+  height: 60rpx;
+  flex-shrink: 0; 
+  margin-right: 10rpx;
+}
+
+.weather-text {
+  font-size: 28rpx;
+  opacity: 0.9;
+  white-space: nowrap; 
+}
+
+/* 温度显示 */
+.temp {
+  width: 100rpx;
+  text-align: right;
+  font-size: 31rpx;
+}

@@ -39,9 +39,21 @@
   margin: 0 auto 20rpx auto;
 }
 
-.weather-desc {
-  font-size: 32rpx;
+/* .weather-desc {
+  font-size: 31rpx;
   opacity: 0.85;
+} */
+.weather-desc {
+  font-size: 31rpx;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* 提示可点击 */
+}
+
+.arrow {
+  font-size: 31rpx;
+  margin-left: 10rpx;
 }
 
 /*获取定位失败*/
@@ -67,27 +79,27 @@
 
 /* 未来天气 */
 .future-box {
-  width: 95%;
+  width: 97%;
   margin-top: 40rpx;
 }
 
 .future-item {
   display: flex;
   justify-content: space-between;
-  padding: 30rpx 0;
+  padding: 25rpx 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .future-date {
-  font-size: 32rpx;
+  font-size: 31rpx;
 }
 
 .future-weather {
-  font-size: 32rpx;
+  font-size: 31rpx;
   opacity: 0.85;
 }
 
 .future-temp {
-  font-size: 32rpx;
+  font-size: 31rpx;
   font-weight: 500;
 }

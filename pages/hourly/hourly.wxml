@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">返回</view>
+  <!-- 标题 -->
+  <view class="title">{{city}} 24h分时天气</view>
+
+  <scroll-view scroll-y="true" class="hourly-scroll" refresher-enabled="true" refresher-triggered="{{refreshing}}" bindrefresherrefresh="onPullDownRefresh" show-scrollbar="false">
+    <block wx:for="{{hourlyList}}" wx:key="index">
+      <view class="hour-item">
+        <text class="time">{{item.time}}</text>
+        <view class="weather-box">
+          <image class="hour-icon" src="{{item.icon}}" mode="aspectFit"></image>
+          <text class="weather-text">{{item.weather}}</text>
+        </view>
+        <text class="temp">{{item.temp}}°</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

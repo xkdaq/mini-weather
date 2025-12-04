@@ -7,7 +7,9 @@
       <!-- <view class="temp">{{temperature}}°</view> -->
       <!-- <view class="weather">{{weather}}</view> -->
       <image class="weather-icon" src="{{icon}}" mode="aspectFit"></image>
-      <view class="weather-desc">{{description}}</view>
+      <view class="weather-desc" bindtap="openHourly">
+        {{description}} <text class="arrow">></text>
+      </view>
     </view>
   </view>
 

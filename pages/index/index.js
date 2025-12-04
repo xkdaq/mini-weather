@@ -146,4 +146,28 @@ Page({
     })
   },
 
+
+  openHourly() {
+    const { lastLocation, city } = this.data;
+    if (!lastLocation) {
+      wx.showToast({ title: "定位信息不存在", icon: "none" });
+      return;
+    }
+    
+    // 把经纬度传给新页面
+    wx.navigateTo({
+      url: `/pages/hourly/hourly?lat=${lastLocation.lat}&lon=${lastLocation.lon}&city=${city}`
+    })
+  },
+
+  onShareAppMessage(res) {
+      
+  },
+  onShareTimeline() {
+    
+  }
+
+
+  
+
 })
