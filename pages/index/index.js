@@ -45,14 +45,15 @@ Page({
         //this.getCity(30.488966, 114.479)
       },
       fail: () => {
+        wx.hideLoading();
+        wx.stopPullDownRefresh();
+        
         wx.showToast({
           title: "请授权定位",
           icon: "none"
         })
         //this.getCity(30.488966, 114.479)
         this.setData({ locationFailed: true })
-        wx.hideLoading();
-        wx.stopPullDownRefresh();
       }
     })
   },
@@ -187,7 +188,7 @@ Page({
         const weekMap = ["周日","周一","周二","周三","周四","周五","周六"]
 
         const list = forecasts.slice(0, 4).map((item, idx) => {
-          let weekLabel = idx === 0 ? "今天" : weekMap[item.week - 0]
+          let weekLabel = idx === 0 ? "今天" : weekMap[(item.week % 7)]
           return {
             date: item.date.slice(5),   // MM-DD
             week: weekLabel,
