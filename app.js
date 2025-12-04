@@ -14,6 +14,7 @@ App({
     })
   },
   globalData: {
-    amapKey: "b732a0461f7ca8d9a8691e2124b3c287"
+    amapKey: "b732a0461f7ca8d9a8691e2124b3c287",
+    qweatherKey:"e4493b32e3eb4d1bbac9a5d478926f28"
   }
 })
