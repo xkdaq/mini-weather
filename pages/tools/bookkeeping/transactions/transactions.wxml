@@ -1,52 +1,66 @@
 <!--pages/tools/bookkeeping/transactions/transactions.wxml-->
 <view class="page">
-  <!-- 筛选标签 -->
-  <scroll-view class="filter-tabs" scroll-x="true">
-    <view class="tabs-wrapper">
-      <view
-        class="tab {{activeTab === index ? 'active' : ''}}"
-        wx:for="{{filterTabs}}"
-        wx:key="index"
-        bindtap="switchFilter"
-        data-index="{{index}}"
-        data-type="{{index === 0 ? 'all' : (index === 1 ? 'expense' : (index === 2 ? 'income' : item))}}"
-      >
-        {{item}}
-      </view>
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
     </view>
-  </scroll-view>
-
-  <!-- 流水列表 -->
-  <view class="transaction-list" wx:if="{{filteredTransactions.length > 0}}">
-    <view
-      class="transaction-item"
-      wx:for="{{filteredTransactions}}"
-      wx:key="id"
-      bindtap="showActionSheet"
-      data-index="{{index}}"
-    >
-      <view class="trans-icon {{item.type}}">
-        <text class="icon">{{item.type === 'expense' ? '🛒' : '💰'}}</text>
-      </view>
-      <view class="trans-info">
-        <view class="trans-title">
-          {{item.type === 'expense' ? '早餐' : '转账'}} · {{getUserName(item.user_id)}}
-        </view>
-        <view class="trans-date">
-          {{formatDate(item.date)}}
-          <text wx:if="{{item.note}}"> · {{item.note}}</text>
-        </view>
-      </view>
-      <view class="trans-amount {{item.type}}">
-        {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}
-      </view>
+    <view class="nav-title">流水记录</view>
+    <view class="nav-right" bindtap="goToRecord">
+      <text class="nav-icon">+</text>
     </view>
   </view>
 
-  <!-- 空状态 -->
-  <view class="empty-state" wx:else>
-    <view class="empty-icon">📋</view>
-    <view class="empty-text">暂无流水记录</view>
-    <button class="add-btn" bindtap="goToRecord">去记账</button>
+  <!-- 页面内容 -->
+  <view class="content">
+    <!-- 筛选标签 -->
+    <scroll-view class="filter-tabs" scroll-x="true">
+      <view class="tabs-wrapper">
+        <view
+          class="tab {{activeTab === index ? 'active' : ''}}"
+          wx:for="{{filterTabs}}"
+          wx:key="index"
+          bindtap="switchFilter"
+          data-index="{{index}}"
+          data-type="{{index === 0 ? 'all' : (index === 1 ? 'expense' : (index === 2 ? 'income' : item))}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 流水列表 -->
+    <view class="transaction-list" wx:if="{{filteredTransactions.length > 0}}">
+      <view
+        class="transaction-item"
+        wx:for="{{filteredTransactions}}"
+        wx:key="id"
+        bindtap="showActionSheet"
+        data-index="{{index}}"
+      >
+        <view class="trans-icon {{item.type}}">
+          <text class="icon">{{item.type === 'expense' ? '🛒' : '💰'}}</text>
+        </view>
+        <view class="trans-info">
+          <view class="trans-title">
+            {{item.type === 'expense' ? '早餐' : '转账'}} · {{getUserName(item.user_id)}}
+          </view>
+          <view class="trans-date">
+            {{formatDate(item.date)}}
+            <text wx:if="{{item.note}}"> · {{item.note}}</text>
+          </view>
+        </view>
+        <view class="trans-amount {{item.type}}">
+          {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">📋</view>
+      <view class="empty-text">暂无流水记录</view>
+      <button class="add-btn" bindtap="goToRecord">去记账</button>
+    </view>
   </view>
 </view>

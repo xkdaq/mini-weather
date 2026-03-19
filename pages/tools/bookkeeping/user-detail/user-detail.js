@@ -144,5 +144,10 @@ Page({
     wx.navigateTo({
       url: `/pages/tools/bookkeeping/record/record?edit=1&transactionId=${transactionId}`
     });
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   }
 });

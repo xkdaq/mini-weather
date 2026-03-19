@@ -1,75 +1,87 @@
 <!--pages/tools/bookkeeping/statistics/statistics.wxml-->
 <view class="page">
-  <!-- 时间段切换 -->
-  <view class="period-tabs">
-    <view
-      class="tab {{periodIndex === index ? 'active' : ''}}"
-      wx:for="{{periods}}"
-      wx:key="index"
-      bindtap="switchPeriod"
-      data-index="{{index}}"
-    >
-      {{item}}
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
     </view>
+    <view class="nav-title">统计</view>
+    <view class="nav-right"></view>
   </view>
 
-  <!-- 汇总卡片 -->
-  <view class="summary-card">
-    <view class="summary-item">
-      <view class="summary-value expense">¥{{totalExpense}}</view>
-      <view class="summary-label">总支出</view>
-    </view>
-    <view class="summary-item">
-      <view class="summary-value income">¥{{totalIncome}}</view>
-      <view class="summary-label">总收款</view>
-    </view>
-    <view class="summary-item">
-      <view class="summary-value owed">¥{{totalOwed}}</view>
-      <view class="summary-label">总欠款</view>
-    </view>
-  </view>
-
-  <!-- 用户欠款排行 -->
-  <view class="section-title" wx:if="{{userDebts.length > 0}}">欠款排行</view>
-  <view class="debt-list" wx:if="{{userDebts.length > 0}}">
-    <view
-      class="debt-item"
-      wx:for="{{userDebts}}"
-      wx:key="userId"
-    >
-      <view class="debt-rank">{{index + 1}}</view>
-      <view class="debt-avatar" style="background: {{item.avatarColor}}">
-        {{item.userName[0]}}
+  <!-- 页面内容 -->
+  <view class="content">
+    <!-- 时间段切换 -->
+    <view class="period-tabs">
+      <view
+        class="tab {{periodIndex === index ? 'active' : ''}}"
+        wx:for="{{periods}}"
+        wx:key="index"
+        bindtap="switchPeriod"
+        data-index="{{index}}"
+      >
+        {{item}}
       </view>
-      <view class="debt-info">
-        <view class="debt-name">{{item.userName}}</view>
-      </view>
-      <view class="debt-amount">¥{{item.debt}}</view>
     </view>
-  </view>
 
-  <!-- 每日支出趋势 -->
-  <view class="section-title" wx:if="{{dailyExpenses.length > 0}}">支出趋势</view>
-  <view class="trend-chart" wx:if="{{dailyExpenses.length > 0}}">
-    <view
-      class="trend-item"
-      wx:for="{{dailyExpenses}}"
-      wx:key="date"
-    >
-      <view class="trend-bar-wrap">
-        <view
-          class="trend-bar {{item.amount > 0 ? 'has-data' : ''}}"
-          style="height: {{item.amount > 0 ? (item.amount / getMaxDailyExpense() * 100) : 0}}%"
-        ></view>
+    <!-- 汇总卡片 -->
+    <view class="summary-card">
+      <view class="summary-item">
+        <view class="summary-value expense">¥{{totalExpense}}</view>
+        <view class="summary-label">总支出</view>
       </view>
-      <view class="trend-day">{{item.day}}</view>
-      <view class="trend-date">{{item.date.slice(5)}}</view>
+      <view class="summary-item">
+        <view class="summary-value income">¥{{totalIncome}}</view>
+        <view class="summary-label">总收款</view>
+      </view>
+      <view class="summary-item">
+        <view class="summary-value owed">¥{{totalOwed}}</view>
+        <view class="summary-label">总欠款</view>
+      </view>
     </view>
-  </view>
 
-  <!-- 空状态 -->
-  <view class="empty-state" wx:if="{{dailyExpenses.length === 0 && userDebts.length === 0}}">
-    <view class="empty-icon">📊</view>
-    <view class="empty-text">暂无统计数据</view>
+    <!-- 用户欠款排行 -->
+    <view class="section-title" wx:if="{{userDebts.length > 0}}">欠款排行</view>
+    <view class="debt-list" wx:if="{{userDebts.length > 0}}">
+      <view
+        class="debt-item"
+        wx:for="{{userDebts}}"
+        wx:key="userId"
+      >
+        <view class="debt-rank">{{index + 1}}</view>
+        <view class="debt-avatar" style="background: {{item.avatarColor}}">
+          {{item.userName[0]}}
+        </view>
+        <view class="debt-info">
+          <view class="debt-name">{{item.userName}}</view>
+        </view>
+        <view class="debt-amount">¥{{item.debt}}</view>
+      </view>
+    </view>
+
+    <!-- 每日支出趋势 -->
+    <view class="section-title" wx:if="{{dailyExpenses.length > 0}}">支出趋势</view>
+    <view class="trend-chart" wx:if="{{dailyExpenses.length > 0}}">
+      <view
+        class="trend-item"
+        wx:for="{{dailyExpenses}}"
+        wx:key="date"
+      >
+        <view class="trend-bar-wrap">
+          <view
+            class="trend-bar {{item.amount > 0 ? 'has-data' : ''}}"
+            style="height: {{item.amount > 0 ? (item.amount / getMaxDailyExpense() * 100) : 0}}%"
+          ></view>
+        </view>
+        <view class="trend-day">{{item.day}}</view>
+        <view class="trend-date">{{item.date.slice(5)}}</view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{dailyExpenses.length === 0 && userDebts.length === 0}}">
+      <view class="empty-icon">📊</view>
+      <view class="empty-text">暂无统计数据</view>
+    </view>
   </view>
 </view>

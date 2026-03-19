@@ -293,5 +293,10 @@ Page({
       amount: value,
       canSubmit: true
     });
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   }
 });

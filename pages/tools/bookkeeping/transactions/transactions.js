@@ -141,5 +141,10 @@ Page({
     wx.navigateTo({
       url: '/pages/tools/bookkeeping/record/record'
     });
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   }
 });

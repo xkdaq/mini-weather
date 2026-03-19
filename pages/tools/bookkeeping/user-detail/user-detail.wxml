@@ -1,88 +1,100 @@
 <!--pages/tools/bookkeeping/user-detail/user-detail.wxml-->
 <view class="page">
-  <!-- 用户信息卡片 -->
-  <view class="user-card">
-    <view class="user-header">
-      <view class="user-avatar-large" style="background: {{user.avatar_color}}">
-        {{user.name[0]}}
-      </view>
-      <view class="user-title">
-        <view class="user-name-large">{{user.name}}</view>
-        <view class="user-note" wx:if="{{user.note}}">{{user.note}}</view>
-      </view>
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
     </view>
-
-    <view class="balance-section">
-      <view class="balance-label">当前余额</view>
-      <view class="balance-value {{balance < 0 ? 'negative' : 'positive'}}">
-        {{balanceDisplay}}
-      </view>
-      <view class="balance-hint">
-        {{balance < 0 ? '该用户还欠你钱' : '该用户有余额'}}</view>
-    </view>
-
-    <view class="stats-grid">
-      <view class="stat-item">
-        <view class="stat-value">{{stats.expenseCount}}</view>
-        <view class="stat-label">代购次数</view>
-      </view>
-      <view class="stat-item">
-        <view class="stat-value">¥{{stats.expenseTotal}}</view>
-        <view class="stat-label">累计支出</view>
-      </view>
-      <view class="stat-item">
-        <view class="stat-value">¥{{stats.incomeTotal}}</view>
-        <view class="stat-label">累计收款</view>
-      </view>
-    </view>
+    <view class="nav-title">{{user ? user.name : '用户详情'}}</view>
+    <view class="nav-right"></view>
   </view>
 
-  <!-- 快捷操作 -->
-  <view class="action-buttons">
-    <view class="action-btn expense" bindtap="quickRecord" data-type="expense">
-      <text class="icon">🛒</text>
-      <text>记支出</text>
-    </view>
-    <view class="action-btn income" bindtap="quickRecord" data-type="income">
-      <text class="icon">💰</text>
-      <text>记收款</text>
-    </view>
-    <view class="action-btn bill" bindtap="generateBill">
-      <text class="icon">📄</text>
-      <text>生成账单</text>
-    </view>
-  </view>
-
-  <!-- 最近流水 -->
-  <view class="section-title">最近流水</view>
-
-  <view class="transaction-list" wx:if="{{transactions.length > 0}}">
-    <view
-      class="transaction-item"
-      wx:for="{{transactions}}"
-      wx:key="id"
-      bindtap="editTransaction"
-      data-id="{{item.id}}"
-    >
-      <view class="trans-icon {{item.type}}">
-        <text>{{item.type === 'expense' ? '🛒' : '💰'}}</text>
-      </view>
-      <view class="trans-info">
-        <view class="trans-title">{{item.type === 'expense' ? '早餐' : '转账'}}</view>
-        <view class="trans-date">
-          {{formatDate(item.date)}}
-          <text wx:if="{{item.note}}"> · {{item.note}}</text>
+  <!-- 页面内容 -->
+  <view class="content" wx:if="{{user}}">
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <view class="user-header">
+        <view class="user-avatar-large" style="background: {{user.avatar_color}}">
+          {{user.name[0]}}
+        </view>
+        <view class="user-title">
+          <view class="user-name-large">{{user.name}}</view>
+          <view class="user-note" wx:if="{{user.note}}">{{user.note}}</view>
         </view>
       </view>
-      <view class="trans-amount {{item.type}}">
-        {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}
+
+      <view class="balance-section">
+        <view class="balance-label">当前余额</view>
+        <view class="balance-value {{balance < 0 ? 'negative' : 'positive'}}">
+          {{balanceDisplay}}
+        </view>
+        <view class="balance-hint">
+          {{balance < 0 ? '该用户还欠你钱' : '该用户有余额'}}</view>
+      </view>
+
+      <view class="stats-grid">
+        <view class="stat-item">
+          <view class="stat-value">{{stats.expenseCount}}</view>
+          <view class="stat-label">代购次数</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">¥{{stats.expenseTotal}}</view>
+          <view class="stat-label">累计支出</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">¥{{stats.incomeTotal}}</view>
+          <view class="stat-label">累计收款</view>
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="empty-state" wx:else>
-    <view class="empty-icon">📋</view>
-    <view class="empty-text">暂无流水记录</view>
+    <!-- 快捷操作 -->
+    <view class="action-buttons">
+      <view class="action-btn expense" bindtap="quickRecord" data-type="expense">
+        <text class="icon">🛒</text>
+        <text>记支出</text>
+      </view>
+      <view class="action-btn income" bindtap="quickRecord" data-type="income">
+        <text class="icon">💰</text>
+        <text>记收款</text>
+      </view>
+      <view class="action-btn bill" bindtap="generateBill">
+        <text class="icon">📄</text>
+        <text>生成账单</text>
+      </view>
+    </view>
+
+    <!-- 最近流水 -->
+    <view class="section-title">最近流水</view>
+
+    <view class="transaction-list" wx:if="{{transactions.length > 0}}">
+      <view
+        class="transaction-item"
+        wx:for="{{transactions}}"
+        wx:key="id"
+        bindtap="editTransaction"
+        data-id="{{item.id}}"
+      >
+        <view class="trans-icon {{item.type}}">
+          <text>{{item.type === 'expense' ? '🛒' : '💰'}}</text>
+        </view>
+        <view class="trans-info">
+          <view class="trans-title">{{item.type === 'expense' ? '早餐' : '转账'}}</view>
+          <view class="trans-date">
+            {{formatDate(item.date)}}
+            <text wx:if="{{item.note}}"> · {{item.note}}</text>
+          </view>
+        </view>
+        <view class="trans-amount {{item.type}}">
+          {{item.type === 'expense' ? '-' : '+'}}¥{{item.amount}}
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">📋</view>
+      <view class="empty-text">暂无流水记录</view>
+    </view>
   </view>
 
   <!-- 账单弹窗 -->

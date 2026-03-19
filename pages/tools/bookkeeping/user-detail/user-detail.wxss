@@ -3,8 +3,50 @@
 .page {
   min-height: 100vh;
   background: var(--color-bg);
+}
+
+/* 自定义导航栏 */
+.custom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  background: linear-gradient(135deg, #FF6B35, #F7931E);
+  padding: 0 24rpx;
+  padding-top: 64rpx;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: white;
+  font-weight: 300;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: white;
+}
+
+.nav-right {
+  width: 60rpx;
+}
+
+/* 页面内容 */
+.content {
   padding: 32rpx;
-  padding-bottom: 120rpx;
+  padding-bottom: 40rpx;
 }
 
 /* 用户卡片 */

@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "早餐账本",
-  "navigationBarBackgroundColor": "#FF6B35",
-  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

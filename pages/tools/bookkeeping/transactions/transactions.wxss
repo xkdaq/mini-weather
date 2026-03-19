@@ -5,11 +5,67 @@
   background: var(--color-bg);
 }
 
+/* 自定义导航栏 */
+.custom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  background: linear-gradient(135deg, #FF6B35, #F7931E);
+  padding: 0 24rpx;
+  padding-top: 64rpx;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 36rpx;
+  color: white;
+  font-weight: 300;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: white;
+}
+
+.nav-right {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-icon {
+  font-size: 40rpx;
+  color: white;
+  font-weight: 300;
+}
+
+/* 页面内容 */
+.content {
+  padding-bottom: 40rpx;
+}
+
 /* 筛选标签 */
 .filter-tabs {
   background: white;
   padding: 24rpx 0;
   border-bottom: 2rpx solid var(--color-border);
+  position: sticky;
+  top: 132rpx;
+  z-index: 99;
 }
 
 .tabs-wrapper {

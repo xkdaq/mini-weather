@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "记账",
-  "navigationBarBackgroundColor": "#FF6B35",
-  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

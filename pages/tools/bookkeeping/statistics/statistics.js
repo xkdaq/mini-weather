@@ -157,5 +157,18 @@ Page({
   // 格式化金额
   formatAmount(amount) {
     return amount.toFixed(1);
+  },
+
+  // 获取最大每日支出（用于计算条形图高度）
+  getMaxDailyExpense() {
+    const { dailyExpenses } = this.data;
+    if (!dailyExpenses || dailyExpenses.length === 0) return 1;
+    const max = Math.max(...dailyExpenses.map(d => d.amount));
+    return max > 0 ? max : 1;
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   }
 });

@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "工具箱",
-  "navigationBarBackgroundColor": "#718184",
-  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

@@ -1,71 +1,80 @@
 <!--pages/tools/bookkeeping/users/users.wxml-->
 <view class="page">
-  <!-- 用户列表 -->
-  <view class="user-list" wx:if="{{users.length > 0}}">
-    <!-- 活跃用户 -->
-    <view class="section-title">活跃用户 ({{users.length}})</view>
-    <view class="user-items">
-      <view
-        class="user-item"
-        wx:for="{{users}}"
-        wx:key="id"
-        wx:if="{{item.status === 'active'}}"
-        bindtap="goToUserDetail"
-        data-id="{{item.id}}"
-        bindlongpress="showUserAction"
-        data-index="{{index}}"
-      >
-        <view class="user-avatar" style="background: {{item.avatar_color}}">
-          {{item.name[0]}}
-        </view>
-        <view class="user-info">
-          <view class="user-name">{{item.name}}</view>
-          <view class="user-note" wx:if="{{item.note}}">{{item.note}}</view>
-          <view class="user-note" wx:else>累计代购 {{item.stats.expenseCount}} 次</view>
-        </view>
-        <view class="user-balance">
-          <view class="user-balance-value {{item.balance < 0 ? 'negative' : 'positive'}}">
-            {{item.balanceDisplay}}
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="nav-title">用户管理</view>
+    <view class="nav-right" bindtap="showAddUserModal">
+      <text class="nav-icon">+</text>
+    </view>
+  </view>
+
+  <!-- 页面内容 -->
+  <view class="content">
+    <!-- 用户列表 -->
+    <view class="user-list" wx:if="{{users.length > 0}}">
+      <!-- 活跃用户 -->
+      <view class="section-title">活跃用户 ({{users.length}})</view>
+      <view class="user-items">
+        <view
+          class="user-item"
+          wx:for="{{users}}"
+          wx:key="id"
+          wx:if="{{item.status === 'active'}}"
+          bindtap="goToUserDetail"
+          data-id="{{item.id}}"
+          bindlongpress="showUserAction"
+          data-index="{{index}}"
+        >
+          <view class="user-avatar" style="background: {{item.avatar_color}}">
+            {{item.name[0]}}
           </view>
-          <view class="user-balance-label">{{item.balance < 0 ? '欠款中' : '有余额'}}</view>
+          <view class="user-info">
+            <view class="user-name">{{item.name}}</view>
+            <view class="user-note" wx:if="{{item.note}}">{{item.note}}</view>
+            <view class="user-note" wx:else>累计代购 {{item.stats.expenseCount}} 次</view>
+          </view>
+          <view class="user-balance">
+            <view class="user-balance-value {{item.balance < 0 ? 'negative' : 'positive'}}">
+              {{item.balanceDisplay}}
+            </view>
+            <view class="user-balance-label">{{item.balance < 0 ? '欠款中' : '有余额'}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 暂停用户 -->
+      <view class="section-title paused-title" wx:if="{{users.length > activeCount}}">
+        暂停服务 ({{pausedCount}})
+      </view>
+      <view class="user-items" wx:if="{{users.length > activeCount}}">
+        <view
+          class="user-item paused"
+          wx:for="{{users}}"
+          wx:key="id"
+          wx:if="{{item.status === 'paused'}}"
+          bindlongpress="showUserAction"
+          data-index="{{index}}"
+        >
+          <view class="user-avatar" style="background: {{item.avatar_color}}; opacity: 0.5">
+            {{item.name[0]}}
+          </view>
+          <view class="user-info">
+            <view class="user-name">{{item.name}}</view>
+            <view class="user-note">已暂停服务</view>
+          </view>
         </view>
       </view>
     </view>
 
-    <!-- 暂停用户 -->
-    <view class="section-title paused-title" wx:if="{{users.length > activeCount}}">
-      暂停服务 ({{pausedCount}})
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">👥</view>
+      <view class="empty-text">还没有添加用户</view>
+      <button class="add-btn" bindtap="showAddUserModal">添加用户</button>
     </view>
-    <view class="user-items" wx:if="{{users.length > activeCount}}">
-      <view
-        class="user-item paused"
-        wx:for="{{users}}"
-        wx:key="id"
-        wx:if="{{item.status === 'paused'}}"
-        bindlongpress="showUserAction"
-        data-index="{{index}}"
-      >
-        <view class="user-avatar" style="background: {{item.avatar_color}}; opacity: 0.5">
-          {{item.name[0]}}
-        </view>
-        <view class="user-info">
-          <view class="user-name">{{item.name}}</view>
-          <view class="user-note">已暂停服务</view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 空状态 -->
-  <view class="empty-state" wx:else>
-    <view class="empty-icon">👥</view>
-    <view class="empty-text">还没有添加用户</view>
-    <button class="add-btn" bindtap="showAddUserModal">添加用户</button>
-  </view>
-
-  <!-- 底部添加按钮 -->
-  <view class="fab" bindtap="showAddUserModal" wx:if="{{users.length > 0}}">
-    <text class="fab-icon">+</text>
   </view>
 
   <!-- 添加用户弹窗 -->

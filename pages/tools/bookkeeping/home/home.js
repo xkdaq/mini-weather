@@ -113,6 +113,25 @@ Page({
     });
   },
 
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
+  },
+
+  // 跳转到用户管理
+  goToUsers() {
+    wx.navigateTo({
+      url: '/pages/tools/bookkeeping/users/users'
+    });
+  },
+
+  // 跳转到统计页面
+  goToStatistics() {
+    wx.navigateTo({
+      url: '/pages/tools/bookkeeping/statistics/statistics'
+    });
+  },
+
   // 格式化金额显示
   formatAmount(amount) {
     const absAmount = Math.abs(amount).toFixed(1);

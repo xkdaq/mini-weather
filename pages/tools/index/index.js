@@ -10,11 +10,21 @@ Page({
         color: '#FF6B35',
         path: '/pages/tools/bookkeeping/home/home'
       }
-    ]
+    ],
+    showBack: false
   },
 
-  onLoad() {
-    // 页面加载时可以动态添加更多工具
+  onLoad(options) {
+    // 判断是否需要显示返回按钮
+    const pages = getCurrentPages();
+    this.setData({
+      showBack: pages.length > 1
+    });
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   },
 
   // 跳转到工具页面

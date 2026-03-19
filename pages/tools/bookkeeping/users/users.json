@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "用户管理",
-  "navigationBarBackgroundColor": "#FF6B35",
-  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }

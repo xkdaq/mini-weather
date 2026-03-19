@@ -1,34 +1,46 @@
 <!--pages/tools/index/index.wxml-->
 <view class="page">
-  <!-- 页面标题 -->
-  <view class="header">
-    <view class="header-title">工具箱</view>
-    <view class="header-subtitle">便捷生活小工具</view>
-  </view>
-
-  <!-- 工具列表 -->
-  <view class="tools-grid">
-    <view
-      class="tool-card"
-      wx:for="{{tools}}"
-      wx:key="id"
-      bindtap="goToTool"
-      data-path="{{item.path}}"
-    >
-      <view class="tool-icon" style="background: {{item.color}}">
-        <text>{{item.icon}}</text>
-      </view>
-      <view class="tool-info">
-        <view class="tool-name">{{item.name}}</view>
-        <view class="tool-desc">{{item.desc}}</view>
-      </view>
-      <view class="tool-arrow">></view>
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-back" bindtap="goBack" wx:if="{{showBack}}">
+      <text class="back-icon">←</text>
     </view>
+    <view class="nav-title">工具箱</view>
+    <view class="nav-right"></view>
   </view>
 
-  <!-- 添加更多提示 -->
-  <view class="more-hint" bindtap="addMoreTools">
-    <text class="more-icon">+</text>
-    <text class="more-text">更多工具开发中</text>
+  <!-- 页面内容 -->
+  <view class="content">
+    <!-- 页面标题 -->
+    <view class="header">
+      <view class="header-title">便捷工具</view>
+      <view class="header-subtitle">让生活更简单</view>
+    </view>
+
+    <!-- 工具列表 -->
+    <view class="tools-grid">
+      <view
+        class="tool-card"
+        wx:for="{{tools}}"
+        wx:key="id"
+        bindtap="goToTool"
+        data-path="{{item.path}}"
+      >
+        <view class="tool-icon" style="background: {{item.color}}">
+          <text>{{item.icon}}</text>
+        </view>
+        <view class="tool-info">
+          <view class="tool-name">{{item.name}}</view>
+          <view class="tool-desc">{{item.desc}}</view>
+        </view>
+        <view class="tool-arrow">></view>
+      </view>
+    </view>
+
+    <!-- 添加更多提示 -->
+    <view class="more-hint" bindtap="addMoreTools">
+      <text class="more-icon">+</text>
+      <text class="more-text">更多工具开发中</text>
+    </view>
   </view>
 </view>
