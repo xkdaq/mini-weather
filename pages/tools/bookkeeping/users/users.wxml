@@ -13,12 +13,9 @@
 
   <!-- 页面内容 -->
   <view class="content">
-    <!-- 添加用户按钮（页面内） -->
-    <view class="add-user-bar" bindtap="showAddUserModal" wx:if="{{users.length > 0}}">
-      <view class="add-user-btn">
-        <text class="add-icon">+</text>
-        <text>添加新用户</text>
-      </view>
+    <!-- 悬浮添加按钮 -->
+    <view class="fab-add" bindtap="showAddUserModal" wx:if="{{users.length > 0}}">
+      <text class="fab-icon">+</text>
     </view>
 
     <!-- 用户列表 -->

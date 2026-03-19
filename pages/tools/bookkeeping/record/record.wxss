@@ -229,12 +229,14 @@
 /* 普通输入框 */
 .form-input {
   width: 100%;
-  padding: 24rpx 28rpx;
+  height: 88rpx;
+  padding: 0 24rpx;
   border: 2rpx solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--font-base);
   background: white;
   box-sizing: border-box;
+  line-height: 88rpx;
 }
 
 /* 提交区域 */
