@@ -1,0 +1,114 @@
+/* pages/tools/index/index.wxss */
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 32rpx;
+}
+
+/* 头部 */
+.header {
+  margin-bottom: 48rpx;
+}
+
+.header-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8rpx;
+}
+
+.header-subtitle {
+  font-size: var(--font-base);
+  color: var(--color-text-secondary);
+}
+
+/* 工具网格 */
+.tools-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.tool-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32rpx;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.tool-card:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-md);
+}
+
+.tool-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.tool-icon text {
+  font-size: 48rpx;
+}
+
+.tool-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-name {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4rpx;
+}
+
+.tool-desc {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+}
+
+.tool-arrow {
+  font-size: var(--font-lg);
+  color: var(--color-text-tertiary);
+  margin-left: 16rpx;
+}
+
+/* 更多提示 */
+.more-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  margin-top: 64rpx;
+  padding: 32rpx;
+  border: 2rpx dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.more-icon {
+  width: 48rpx;
+  height: 48rpx;
+  background: var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: var(--color-text-tertiary);
+  font-weight: 300;
+}
+
+.more-text {
+  font-size: var(--font-base);
+  color: var(--color-text-tertiary);
+}

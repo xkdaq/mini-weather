@@ -1,4 +1,59 @@
-/**app.wxss**/
+/**app.wxss - 全局样式**/
+
+/* ==================== 基础变量 ==================== */
+page {
+  /* 主色调 - 天气蓝灰 */
+  --color-weather-primary: #718184;
+  --color-weather-bg: #718184;
+
+  /* 记账主题色 - 橙色 */
+  --color-primary: #FF6B35;
+  --color-primary-light: #FF8F66;
+  --color-primary-dark: #E55A2B;
+  --color-secondary: #F7931E;
+  --color-accent: #FFCD3C;
+
+  /* 功能色 */
+  --color-expense: #FF4D4F;
+  --color-income: #52C41A;
+
+  /* 文字色 */
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #999999;
+
+  /* 背景色 */
+  --color-bg: #F5F6FA;
+  --color-card: #FFFFFF;
+  --color-border: #EEEEEE;
+
+  /* 阴影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+  /* 圆角 */
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --radius-xl: 24rpx;
+
+  /* 字体大小 */
+  --font-xs: 22rpx;
+  --font-sm: 24rpx;
+  --font-base: 28rpx;
+  --font-lg: 32rpx;
+  --font-xl: 36rpx;
+  --font-2xl: 44rpx;
+  --font-3xl: 56rpx;
+
+  background-color: var(--color-bg);
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-size: var(--font-base);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+/* ==================== 天气相关样式 ==================== */
 .container {
   height: 100%;
   display: flex;
@@ -7,4 +62,185 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
+/* ==================== 记账相关全局样式 ==================== */
+
+/* 全局容器 */
+.bk-container {
+  padding: 0 32rpx 120rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 金额样式 */
+.amount-positive {
+  color: var(--color-income);
+}
+
+.amount-negative {
+  color: var(--color-expense);
+}
+
+/* 主按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx 32rpx;
+  font-size: var(--font-base);
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-primary:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.btn-primary[disabled] {
+  background: #CCCCCC;
+  color: #999999;
+}
+
+/* 次要按钮 */
+.btn-secondary {
+  background: #F5F5F5;
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx 32rpx;
+  font-size: var(--font-base);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 危险按钮 */
+.btn-danger {
+  background: #FFF1F0;
+  color: var(--color-expense);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx 32rpx;
+  font-size: var(--font-base);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 输入框 */
+.input {
+  width: 100%;
+  padding: 24rpx 28rpx;
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-base);
+  background: white;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 6rpx rgba(255, 107, 53, 0.1);
+}
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: var(--font-xs);
+  font-weight: 600;
+}
+
+.tag-expense {
+  background: #FFF1F0;
+  color: var(--color-expense);
+}
+
+.tag-income {
+  background: #E8FFF0;
+  color: var(--color-income);
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 96rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: var(--font-base);
+  color: var(--color-text-tertiary);
+}
+
+/* 弹性盒子 */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* 通用标题 */
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 48rpx 0 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 头像 */
+.avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.avatar-small {
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+}
+
+.avatar-mini {
+  width: 44rpx;
+  height: 44rpx;
+  font-size: 20rpx;
+}

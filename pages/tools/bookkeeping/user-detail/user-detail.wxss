@@ -1,0 +1,311 @@
+/* pages/tools/bookkeeping/user-detail/user-detail.wxss */
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 32rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 用户卡片 */
+.user-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.user-avatar-large {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: white;
+}
+
+.user-title {
+  flex: 1;
+}
+
+.user-name-large {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8rpx;
+}
+
+.user-note {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+}
+
+/* 余额区域 */
+.balance-section {
+  text-align: center;
+  padding: 32rpx 0;
+  border-top: 2rpx solid var(--color-border);
+  border-bottom: 2rpx solid var(--color-border);
+  margin-bottom: 32rpx;
+}
+
+.balance-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.balance-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.balance-value.negative {
+  color: var(--color-expense);
+}
+
+.balance-value.positive {
+  color: var(--color-income);
+}
+
+.balance-hint {
+  font-size: var(--font-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* 统计网格 */
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+}
+
+/* 操作按钮 */
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32rpx 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.action-btn .icon {
+  font-size: 40rpx;
+}
+
+.action-btn text:last-child {
+  font-size: var(--font-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.action-btn.expense {
+  border-top: 4rpx solid var(--color-expense);
+}
+
+.action-btn.income {
+  border-top: 4rpx solid var(--color-income);
+}
+
+.action-btn.bill {
+  border-top: 4rpx solid var(--color-primary);
+}
+
+/* 标题 */
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 16rpx;
+}
+
+/* 流水列表 */
+.transaction-list {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 2rpx solid var(--color-border);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.trans-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  font-size: 32rpx;
+}
+
+.trans-icon.expense {
+  background: #FFF1F0;
+}
+
+.trans-icon.income {
+  background: #E8FFF0;
+}
+
+.trans-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.trans-title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4rpx;
+}
+
+.trans-date {
+  font-size: var(--font-sm);
+  color: var(--color-text-tertiary);
+}
+
+.trans-amount {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.trans-amount.expense {
+  color: var(--color-expense);
+}
+
+.trans-amount.income {
+  color: var(--color-income);
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 40rpx;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-icon {
+  font-size: 72rpx;
+  margin-bottom: 16rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: var(--font-base);
+  color: var(--color-text-tertiary);
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 48rpx;
+  width: 80%;
+  max-width: 600rpx;
+}
+
+.modal-header {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.bill-content {
+  background: #F5F5F5;
+  border-radius: var(--radius-md);
+  padding: 32rpx;
+  font-size: var(--font-base);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  margin-bottom: 32rpx;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.btn-cancel {
+  flex: 1;
+  background: #F5F5F5;
+  color: var(--color-text-secondary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx;
+  font-size: var(--font-base);
+}
+
+.btn-confirm {
+  flex: 1;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 24rpx;
+  font-size: var(--font-base);
+  font-weight: 600;
+}

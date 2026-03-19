@@ -1,0 +1,120 @@
+<!--pages/tools/bookkeeping/record/record.wxml-->
+<view class="page">
+  <!-- 编辑模式提示 -->
+  <view class="edit-tip" wx:if="{{isEdit}}">
+    <text>✏️ 编辑模式：修改后将更新原有记录</text>
+  </view>
+
+  <!-- 类型切换 -->
+  <view class="type-switch">
+    <view
+      class="type-btn {{type === 'expense' ? 'active expense' : ''}}"
+      bindtap="switchType"
+      data-type="expense"
+    >
+      <text class="icon">🛒</text>
+      支出（买早餐）
+    </view>
+    <view
+      class="type-btn {{type === 'income' ? 'active income' : ''}}"
+      bindtap="switchType"
+      data-type="income"
+    >
+      <text class="icon">💰</text>
+      收款（转账）
+    </view>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-card">
+    <!-- 关联用户 -->
+    <view class="form-item">
+      <view class="form-label">关联用户</view>
+      <picker
+        mode="selector"
+        range="{{users}}"
+        range-key="name"
+        value="{{userIndex}}"
+        bindchange="onUserChange"
+      >
+        <view class="form-picker">
+          <view class="user-selected" wx:if="{{users.length > 0}}">
+            <view
+              class="user-avatar-mini"
+              style="background: {{users[userIndex].avatar_color}}"
+            >
+              {{users[userIndex].name[0]}}
+            </view>
+            <text>{{users[userIndex].name}}</text>
+          </view>
+          <text wx:else class="placeholder">请先添加用户</text>
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+      <view class="current-balance" wx:if="{{users.length > 0}}">
+        当前余额：
+        <text class="{{currentUserBalance < 0 ? 'negative' : 'positive'}}">
+          {{currentUserBalanceDisplay}}
+        </text>
+      </view>
+    </view>
+
+    <!-- 金额 -->
+    <view class="form-item">
+      <view class="form-label">金额（元）</view>
+      <view class="amount-input-wrap">
+        <text class="currency">¥</text>
+        <input
+          class="amount-input"
+          type="digit"
+          value="{{amount}}"
+          placeholder="0.00"
+          bindinput="onAmountInput"
+          focus="{{true}}"
+        />
+      </view>
+      <!-- 快速金额 -->
+      <view class="quick-amounts">
+        <view class="quick-btn" bindtap="quickAmount" data-value="5">¥5</view>
+        <view class="quick-btn" bindtap="quickAmount" data-value="10">¥10</view>
+        <view class="quick-btn" bindtap="quickAmount" data-value="15">¥15</view>
+        <view class="quick-btn" bindtap="quickAmount" data-value="20">¥20</view>
+      </view>
+    </view>
+
+    <!-- 日期 -->
+    <view class="form-item">
+      <view class="form-label">日期</view>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="form-picker">
+          <text>{{date}}</text>
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 备注 -->
+    <view class="form-item">
+      <view class="form-label">备注（可选）</view>
+      <input
+        class="form-input"
+        type="text"
+        value="{{note}}"
+        placeholder="{{type === 'expense' ? '如：肉夹馍+豆浆' : '如：微信转账'}}"
+        bindinput="onNoteInput"
+        maxlength="50"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button
+      class="submit-btn {{canSubmit ? '' : 'disabled'}}"
+      bindtap="submitRecord"
+      disabled="{{!canSubmit}}"
+    >
+      {{isEdit ? '保存修改' : '确认'}}{{type === 'expense' ? '支出' : '收款'}}
+    </button>
+  </view>
+</view>

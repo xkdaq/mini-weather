@@ -1,7 +1,14 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/hourly/hourly"
+    "pages/hourly/hourly",
+    "pages/tools/index/index",
+    "pages/tools/bookkeeping/home/home",
+    "pages/tools/bookkeeping/record/record",
+    "pages/tools/bookkeeping/transactions/transactions",
+    "pages/tools/bookkeeping/users/users",
+    "pages/tools/bookkeeping/user-detail/user-detail",
+    "pages/tools/bookkeeping/statistics/statistics"
   ],
   "permission": {
     "scope.userLocation": {
@@ -16,6 +23,26 @@
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#718184",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "天气",
+        "iconPath": "images/tabbar/weather.png",
+        "selectedIconPath": "images/tabbar/weather-active.png"
+      },
+      {
+        "pagePath": "pages/tools/index/index",
+        "text": "工具",
+        "iconPath": "images/tabbar/tools.png",
+        "selectedIconPath": "images/tabbar/tools-active.png"
+      }
+    ]
   },
   "style": "v2",
   "componentFramework": "glass-easel",
