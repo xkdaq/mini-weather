@@ -70,7 +70,7 @@
         <view class="trend-bar-wrap">
           <view
             class="trend-bar {{item.amount > 0 ? 'has-data' : ''}}"
-            style="height: {{item.amount > 0 ? (item.amount / getMaxDailyExpense() * 100) : 0}}%"
+            style="height: {{item.amount > 0 ? (item.amount / maxDailyExpense * 100) : 0}}%"
           ></view>
         </view>
         <view class="trend-day">{{item.day}}</view>

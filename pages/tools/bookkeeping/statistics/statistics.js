@@ -61,12 +61,18 @@ Page({
     // 每日支出趋势
     const dailyExpenses = this.calcDailyExpenses(periodTransactions, startDate, endDate);
 
+    // 计算最大每日支出（用于条形图高度）
+    const maxDailyExpense = dailyExpenses.length > 0
+      ? Math.max(...dailyExpenses.map(d => d.amount))
+      : 1;
+
     this.setData({
       totalExpense,
       totalIncome,
       totalOwed,
       userDebts,
-      dailyExpenses
+      dailyExpenses,
+      maxDailyExpense: maxDailyExpense > 0 ? maxDailyExpense : 1
     });
   },
 
@@ -157,14 +163,6 @@ Page({
   // 格式化金额
   formatAmount(amount) {
     return amount.toFixed(1);
-  },
-
-  // 获取最大每日支出（用于计算条形图高度）
-  getMaxDailyExpense() {
-    const { dailyExpenses } = this.data;
-    if (!dailyExpenses || dailyExpenses.length === 0) return 1;
-    const max = Math.max(...dailyExpenses.map(d => d.amount));
-    return max > 0 ? max : 1;
   },
 
   // 返回上一页

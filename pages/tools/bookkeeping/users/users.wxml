@@ -7,7 +7,7 @@
     </view>
     <view class="nav-title">用户管理</view>
     <view class="nav-right" bindtap="showAddUserModal">
-      <text class="nav-icon">+</text>
+      <!-- <text class="nav-icon">+</text> -->
     </view>
   </view>
 
