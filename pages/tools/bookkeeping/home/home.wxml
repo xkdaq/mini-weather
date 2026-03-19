@@ -3,7 +3,7 @@
   <!-- 自定义导航栏 -->
   <view class="custom-nav">
     <view class="nav-back" bindtap="goBack">
-      <text class="back-icon">←</text>
+      <image class="back-icon" src="/images/app/back.png" mode="aspectFit"/>
     </view>
     <view class="nav-title">早餐账本</view>
     <view class="nav-right"></view>
@@ -62,7 +62,7 @@
     <!-- 用户余额列表标题栏 -->
     <view class="section-header">
       <view class="section-title">
-        <text class="icon">👥</text>
+        <text class="icon"></text>
         用户余额
         <text class="title-count">({{activeUsers.length}}人)</text>
       </view>
@@ -106,7 +106,7 @@
 
     <!-- 暂停用户 -->
     <view class="section-title" wx:if="{{users.length > activeUsers.length}}" style="margin-top: 32rpx;">
-      <text class="icon">⏸️</text>
+      <text class="icon"></text>
       暂停服务
     </view>
     <view class="user-list paused" wx:if="{{users.length > activeUsers.length}}">
