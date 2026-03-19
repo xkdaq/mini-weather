@@ -1,32 +1,110 @@
 <!--index.wxml-->
-<view class="container">
-  <!-- 当前天气 -->
-  <view wx:if="{{loaded}}">
-    <view class="current-box">
-      <view class="city">{{city}}</view>
-      <!-- <view class="temp">{{temperature}}°</view> -->
-      <!-- <view class="weather">{{weather}}</view> -->
-      <image class="weather-icon" src="{{icon}}" mode="aspectFit"></image>
-      <view class="weather-desc" bindtap="openHourly">
-        {{description}} <text class="arrow">></text>
+<view class="page">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav">
+    <view class="nav-left"></view>
+    <view class="nav-title">天气</view>
+    <view class="nav-right"></view>
+  </view>
+
+  <!-- 背景装饰 -->
+  <view class="bg-decoration">
+    <view class="bg-circle circle-1"></view>
+    <view class="bg-circle circle-2"></view>
+    <view class="bg-circle circle-3"></view>
+  </view>
+
+  <!-- 定位失败状态 -->
+  <view wx:if="{{locationFailed}}" class="location-fail">
+    <view class="fail-icon">📍</view>
+    <text class="fail-text">定位失败，请授权位置权限</text>
+    <button class="retry-btn" bindtap="retryLocation">重新获取定位</button>
+  </view>
+
+  <!-- 主内容 -->
+  <block wx:if="{{!locationFailed}}">
+    <!-- 顶部城市信息 -->
+    <view class="header">
+      <view class="location">
+        <text class="location-icon">📍</text>
+        <text class="city-name">{{city || '定位中...'}}</text>
+      </view>
+      <view class="update-time">{{updateTime}}</view>
+    </view>
+
+    <!-- 当前天气卡片 -->
+    <view class="current-card" wx:if="{{loaded}}">
+      <view class="weather-main">
+        <image class="weather-icon" src="{{icon}}" mode="aspectFit"/>
+        <view class="temp-box">
+          <text class="temp">{{temperature}}</text>
+          <text class="temp-unit">°</text>
+        </view>
+        <view class="weather-text">{{weather}}</view>
+      </view>
+
+      <!-- 天气详情 -->
+      <view class="weather-details" bindtap="openHourly">
+        <view class="detail-item">
+          <text class="detail-label">湿度</text>
+          <text class="detail-value">{{humidity}}%</text>
+        </view>
+        <view class="detail-divider"></view>
+        <view class="detail-item">
+          <text class="detail-label">风向</text>
+          <text class="detail-value">{{windDir}}</text>
+        </view>
+        <view class="detail-divider"></view>
+        <view class="detail-item">
+          <text class="detail-label">风速</text>
+          <text class="detail-value">{{windSpeed}}级</text>
+        </view>
+        <view class="detail-arrow">
+          <text class="arrow-icon">›</text>
+        </view>
       </view>
     </view>
-  </view>
 
-  <view wx:if="{{locationFailed}}" class="location-fail">
-    <text>定位失败，请点击重新获取</text>
-    <button bindtap="retryLocation">重新获取定位</button>
-  </view>
+    <!-- 加载中骨架屏 -->
+    <view class="skeleton-card" wx:if="{{!loaded}}">
+      <view class="skeleton-icon"></view>
+      <view class="skeleton-temp"></view>
+      <view class="skeleton-text"></view>
+    </view>
 
-  <!-- 未来天气 -->
-  <view class="future-box">
-    <block wx:for="{{futureList}}" wx:key="index">
-      <view class="future-item">
-        <text class="future-date">{{item.date}} {{item.week}}</text>
-        <text class="future-weather">{{item.weather}}</text>
-        <text class="future-temp">{{item.temp}}</text>
+    <!-- 未来天气预报 -->
+    <view class="forecast-section" wx:if="{{loaded}}">
+      <view class="section-header">
+        <text class="section-title">未来7天</text>
+        <text class="section-sub">Forecast</text>
       </view>
-    </block>
-  </view>
 
+      <view class="forecast-list">
+        <view 
+          class="forecast-item {{index === 0 ? 'today' : ''}}"
+          wx:for="{{futureList}}"
+          wx:key="index"
+        >
+          <view class="forecast-day">
+            <text class="day-label">{{item.week}}</text>
+            <text class="day-date">{{item.date}}</text>
+          </view>
+          <view class="forecast-weather">
+            <image class="forecast-icon" src="{{item.icon}}" mode="aspectFit"/>
+            <text class="weather-desc">{{item.weather}}</text>
+          </view>
+          <view class="forecast-temp">
+            <text class="temp-low">{{item.tempMin}}°</text>
+            <view class="temp-bar">
+              <view
+                class="temp-progress"
+                style="left: {{item.tempPercent}}%; width: {{item.tempWidth}}%"
+              ></view>
+            </view>
+            <text class="temp-high">{{item.tempMax}}°</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>
