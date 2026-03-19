@@ -12,10 +12,10 @@
   <!-- 页面内容 -->
   <view class="content">
     <!-- 页面标题 -->
-    <view class="header">
+    <!-- <view class="header">
       <view class="header-title">便捷工具</view>
       <view class="header-subtitle">让生活更简单</view>
-    </view>
+    </view> -->
 
     <!-- 工具列表 -->
     <view class="tools-grid">

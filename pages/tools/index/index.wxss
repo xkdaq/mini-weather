@@ -10,8 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 88rpx;
-  background: linear-gradient(135deg, #718184, #8A9A9C);
+  height: 120rpx;
+  background: linear-gradient(135deg, #718184, #718184);
   padding: 0 24rpx;
   padding-top: 64rpx;
   position: sticky;
